@@ -32,7 +32,7 @@ else:
 salario=int(input("¿Cuánto ganas?"))
 pago=0
 if salario>600000:
-    pago+=(salario-600000)*.20
+    pago+=(salario-600000)*.20 # mas igual(+=) hace la operacion y guarda el resultado en la misma variable
     salario=600000
     print(f"Tu pago de impuestos es {pago}")
 
