@@ -46,3 +46,4 @@ if 0 <salario<=100000:
 print(f"Tu pago de impuestos es {pago}")
 
 print(f"Tu pago de impuestos total es {pago}")
+
