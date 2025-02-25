@@ -1,3 +1,8 @@
+import json
+
+
+
+
 alumno={
     "nombre":"Michael",#pares ordenados de informacion=diccionario
     "apellido":"Jackson",
@@ -33,6 +38,16 @@ def registrar_alumno():#def declara una funcion
 
 alumno = registrar_alumno()
 
+def guardar_json(alumno_a_guardar): #open solo permite leer, escribir o modificar archivos 
+    #Para manejar archivos, rutas, directorios, copiar y pegar arvichos se usa "os"
+    with open("lista.json","a") as archivo:# "a" añade a los archivos, w escribe y sobrescribe, r sólo lee
+        json.dump(alumno_a_guardar,archivo)#json.dump mete informacion de json en forma de objeto
+        print("Se guardo en un archivo")
+
+
+
 print("El perfil del alumno: ")
 for clave, valor in alumno.items(): #.items se usa pra recorrer el diccionario
     print(f"{clave.capitalize()} es : {valor}")
+
+guardar_json(alumno)
