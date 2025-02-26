@@ -1,19 +1,5 @@
 import json
 
-
-
-
-alumno={
-    "nombre":"Michael",#pares ordenados de informacion=diccionario
-    "apellido":"Jackson",
-    "edad":"46",
-    "genero":"F",
-    "direccion":"Ever green stret N. 7",
-    "correo":"michael_jackson@gmail.com",
-    "ocupacion":"Rey del pop"
-}
-
-
 def obtener_edad():
     while True:#hasta que te de una entrada valida
         edad=input("Ingresa tu edad:")
@@ -29,9 +15,6 @@ def obtener_genero():
             return genero
         else:
             print("Genero no valido")
-            
-        
-
 
 def registrar_alumno():#def declara una funcion
     alumno_variableLocal={
@@ -45,19 +28,44 @@ def registrar_alumno():#def declara una funcion
     }
     return alumno_variableLocal #Aqui retornamos el diccionario llenado
 
-
-alumno = registrar_alumno()
-
 def guardar_json(alumno_a_guardar): #open solo permite leer, escribir o modificar archivos 
     #Para manejar archivos, rutas, directorios, copiar y pegar arvichos se usa "os"
-    with open("lista.json","a") as archivo:# "a" añade a los archivos, w escribe y sobrescribe, r sólo lee
-        json.dump(alumno_a_guardar,archivo)#json.dump mete informacion de json en forma de objeto
-        print("Se guardo en un archivo")
+    try:#Intenta hacer esto si no funciona vete al escept
+        with open("lista.json","a") as archivo:# "a" añade a los archivos, w escribe y sobrescribe, r sólo lee
+            json.dump(alumno_a_guardar,archivo)#json.dump mete informacion de json en forma de objeto
+            print("Se guardo en un archivo")
 
+    except Exception as error:#SIrve para cachar errores de lo que este dentro del try 
+        print(f"Error del sistema: {error}")
 
+def mostrar_alumno(alumno):
+    print("El perfil del alumno: ")
+    for clave, valor in alumno.items(): #.items se usa pra recorrer el diccionario
+        print(f"{clave.capitalize()} es : {valor}")
 
-print("El perfil del alumno: ")
-for clave, valor in alumno.items(): #.items se usa pra recorrer el diccionario
-    print(f"{clave.capitalize()} es : {valor}")
+def menu():
+    while True:
 
-guardar_json(alumno)
+        print("Menu de opciones: ")
+        print("1.Registrar al alumno")
+        print("2.Mostrar alumnos")
+        print("3.Salir")
+        opcion=input("Elige una opcion")
+        if opcion=="1":
+            alumno_temporal=registrar_alumno()
+            guardar_json(alumno_temporal)
+        elif opcion=="2":
+            #mostrar_alumnos()
+            print("Estos son los alumnos: ")
+        elif opcion=="3":
+            break ##Termina la funcion
+        else:
+            print("Opcion no valida")
+
+menu()
+#1 implementar mostrar todos los alumnos leyendo desde el archivo
+#2Validar todas las entradas, con una funcion y que no esten vacias
+#3.BUscar alumnos por nombre en el archivo
+#Borrar alumnos
+#Hacer una copia o exportar el json 
+#a cada alumno hacerle su propio json
