@@ -22,13 +22,23 @@ def obtener_edad():
         else:
             print("La edad debe de ser un numero")
 
+def obtener_genero():
+    while True:
+        genero=input("Ingresa tu genero Hombre o Mujer con H/M/NB").upper() #uper transforma el texto ingresado a mayusculas
+        if genero in ["M","H","NB"]:#in checa que el objeto este dentro de la lista
+            return genero
+        else:
+            print("Genero no valido")
+            
+        
+
 
 def registrar_alumno():#def declara una funcion
     alumno_variableLocal={
     "nombre":input("Ingresa tu nombre:"),
     "apellido":input("Ingresa tu apellido:"),
     "edad":obtener_edad(),
-    "genero":input("Ingresa tu genero:"),
+    "genero":obtener_genero(),
     "direccion":input("Ingresa tu direccion"),
     "correo":input("Ingresa tu correo:"),
     "ocupacion":input("Ingresa tu ocupacion:"),
