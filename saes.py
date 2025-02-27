@@ -42,6 +42,19 @@ def mostrar_alumno(alumno):
     print("El perfil del alumno: ")
     for clave, valor in alumno.items(): #.items se usa pra recorrer el diccionario
         print(f"{clave.capitalize()} es : {valor}")
+        print("-------------------")
+
+def mostrar_alumnos():#dentro de la funcion vamos a leer el archivo
+    try:#Intenta hacer esto si no funciona vete al escept
+        with open("lista.json","r") as archivo:#  r sólo lee
+            alumnos=archivo.readlines()##lee lineas de un archivo y convertirlas a un diccionario de python
+            print("Estos son los alumnos:")
+            for alumno_json in alumnos:
+                mostrar_alumno(alumno_json)
+
+    except Exception as error:#SIrve para cachar errores de lo que este dentro del try 
+        print(f"Error del sistema: {error}")
+
 
 def menu():
     while True:
@@ -55,7 +68,7 @@ def menu():
             alumno_temporal=registrar_alumno()
             guardar_json(alumno_temporal)
         elif opcion=="2":
-            #mostrar_alumnos()
+            mostrar_alumnos()
             print("Estos son los alumnos: ")
         elif opcion=="3":
             break ##Termina la funcion
