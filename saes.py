@@ -46,11 +46,15 @@ def mostrar_alumno(alumno):
 
 def mostrar_alumnos():#dentro de la funcion vamos a leer el archivo
     try:#Intenta hacer esto si no funciona vete al escept
+        print("Aqui empieza la funcion mostrar alumnos")
         with open("lista.json","r") as archivo:#  r sólo lee
             alumnos=archivo.readlines()##lee lineas de un archivo y convertirlas a un diccionario de python
             print("Estos son los alumnos:")
+
             for alumno_json in alumnos:
-                mostrar_alumno(alumno_json)
+                alumno=json.loads(alumno_json)
+                mostrar_alumno(alumno)
+                
 
     except Exception as error:#SIrve para cachar errores de lo que este dentro del try 
         print(f"Error del sistema: {error}")
