@@ -15,30 +15,37 @@ def obtener_genero():
             return genero
         else:
             print("Genero no valido")
+def validar_entrada(mensaje):
+    while True:
+        escrito_del_usuario=input(mensaje)
+        if escrito_del_usuario:#cuasiverdad o cuasifalso
+            return escrito_del_usuario
+        else:
+            print("Este campo no puede estar vacío")
 
 def registrar_alumno():#def declara una funcion
     alumno_variableLocal={
-    "nombre":input("Ingresa tu nombre:"),
-    "apellido":input("Ingresa tu apellido:"),
+    "nombre":validar_entrada("Ingresa tu nombre:"),
+    "apellido":validar_entrada("Ingresa tu apellido:"),
     "edad":obtener_edad(),
     "genero":obtener_genero(),
-    "direccion":input("Ingresa tu direccion"),
+    "direccion":validar_entrada("Ingresa tu direccion"),
     "correo":input("Ingresa tu correo:"),
-    "ocupacion":input("Ingresa tu ocupacion:"),
+    "ocupacion":validar_entrada("Ingresa tu ocupacion:"),
     }
     return alumno_variableLocal #Aqui retornamos el diccionario llenado
 
 def guardar_json(alumno_a_guardar): #open solo permite leer, escribir o modificar archivos 
     #Para manejar archivos, rutas, directorios, copiar y pegar arvichos se usa "os"
     try:#Intenta hacer esto si no funciona vete al escept
-        # Intentar leer el archivo si existe
-        try:
+        try: #Intentar leer el archivo si existe y que sea un archivo de json
             with open("lista.json", "r") as archivo:
                 alumnos = json.load(archivo)  # Cargar lista de alumnos existente
         except (FileNotFoundError, json.JSONDecodeError):
             alumnos = []  # Si el archivo no existe o está vacío, iniciar una lista vacía
         alumnos.append(alumno_a_guardar)  # Agregar el nuevo alumno a la lista
         with open("lista.json", "w") as archivo:  # Escribir toda la lista de nuevo
+            #.domp()sirve para meter cosas a un archivo de json
             json.dump(alumnos, archivo, indent=4)  # Formato legible con indentación
         print("Se guardó en un archivo correctamente.")
     except Exception as error:#SIrve para cachar errores de lo que este dentro del try 
@@ -85,7 +92,7 @@ def menu():
             print("Opcion no valida")
 
 menu()
-#1 implementar mostrar todos los alumnos leyendo desde el archivo
+
 #2Validar todas las entradas, con una funcion y que no esten vacias
 #3.BUscar alumnos por nombre en el archivo
 #Borrar alumnos
