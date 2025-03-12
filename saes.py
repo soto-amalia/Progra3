@@ -31,10 +31,16 @@ def registrar_alumno():#def declara una funcion
 def guardar_json(alumno_a_guardar): #open solo permite leer, escribir o modificar archivos 
     #Para manejar archivos, rutas, directorios, copiar y pegar arvichos se usa "os"
     try:#Intenta hacer esto si no funciona vete al escept
-        with open("lista.json","a") as archivo:# "a" añade a los archivos, w escribe y sobrescribe, r sólo lee
-            json.dump(alumno_a_guardar,archivo)#json.dump mete informacion de json en forma de objeto
-            print("Se guardo en un archivo")
-
+        # Intentar leer el archivo si existe
+        try:
+            with open("lista.json", "r") as archivo:
+                alumnos = json.load(archivo)  # Cargar lista de alumnos existente
+        except (FileNotFoundError, json.JSONDecodeError):
+            alumnos = []  # Si el archivo no existe o está vacío, iniciar una lista vacía
+        alumnos.append(alumno_a_guardar)  # Agregar el nuevo alumno a la lista
+        with open("lista.json", "w") as archivo:  # Escribir toda la lista de nuevo
+            json.dump(alumnos, archivo, indent=4)  # Formato legible con indentación
+        print("Se guardó en un archivo correctamente.")
     except Exception as error:#SIrve para cachar errores de lo que este dentro del try 
         print(f"Error del sistema: {error}")
 
@@ -42,20 +48,19 @@ def mostrar_alumno(alumno):
     print("El perfil del alumno: ")
     for clave, valor in alumno.items(): #.items se usa pra recorrer el diccionario
         print(f"{clave.capitalize()} es : {valor}")
-        print("-------------------")
+        
 
-def mostrar_alumnos():#dentro de la funcion vamos a leer el archivo
-    try:#Intenta hacer esto si no funciona vete al escept
-        print("Aqui empieza la funcion mostrar alumnos")
-        with open("lista.json","r") as archivo:#  r sólo lee
-            alumnos=archivo.readlines()##lee lineas de un archivo y convertirlas a un diccionario de python
-            print("Estos son los alumnos:")
-
-            for alumno_json in alumnos:
-                alumno=json.loads(alumno_json)
-                mostrar_alumno(alumno)
-                
-
+def mostrar_alumnos():
+    try:
+        with open("lista.json", "r") as archivo:
+            alumnos = json.load(archivo)  # Leer lista de alumnos
+        print("Estos son los alumnos registrados:")
+        for alumno in alumnos:
+            print("-------------------")
+            mostrar_alumno(alumno)
+            print("-------------------")
+    except (FileNotFoundError, json.JSONDecodeError):
+        print("No hay alumnos registrados aún.")
     except Exception as error:#SIrve para cachar errores de lo que este dentro del try 
         print(f"Error del sistema: {error}")
 
@@ -86,3 +91,4 @@ menu()
 #Borrar alumnos
 #Hacer una copia o exportar el json 
 #a cada alumno hacerle su propio json
+

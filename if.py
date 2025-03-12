@@ -1,6 +1,6 @@
 #Eres una billetera del metro,el bolero vale 5 pesos,Pero si eres menor de edad cuesta 4
 #Y si tienesaineres mayor d3 65 años tienes que cobrar 2 pesos, Solo le preguntas a la gente su edad
-
+""""
 age=0
 tickets_mars=0
 age=int(input("Ingresa la edad de la persona que va a comprar un ticket: "))
@@ -46,4 +46,23 @@ if 0 <salario<=100000:
 print(f"Tu pago de impuestos es {pago}")
 
 print(f"Tu pago de impuestos total es {pago}")
+"""""
+
+#Determina el tipo de triángulo (equilátero, isósceles o escaleno) basado en las longitudes de sus lados.
+lado1=30
+lado2=30
+lado3=30
+def tipo_triangulo(a, b, c):
+    # Verificar si es un triángulo válido
+    if a + b > c and a + c > b and b + c > a: #desigualdad triangular
+        if a==b==c:
+            return "Es Equilatero"
+        elif a==b or a==c or b==c:
+            return "Es Isosceles"
+        else:
+            return "Es escaleno"
+
+    else:
+        return "No es un triangulo valido"
+print(tipo_triangulo(40, lado2, 50))
 
