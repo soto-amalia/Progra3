@@ -51,4 +51,16 @@ def calcular_iva(precio, cantidad):
     total_iva =total*(1+iva)
     return total_iva
 
-productos_iva=calcular_iva(productos)
+""""productos_iva=calcular_iva(500,3)
+print(productos_iva)
+"""
+
+def ventas_totales(productos,ventas):
+    for venta in ventas:
+        id_producto=venta["id_producto"]
+        cantidad=venta["cantidad"]
+        producto=productos[id_producto]
+        precio=producto["precio"]
+        total=calcular_iva(precio,cantidad)
+        print(f"EL producto {producto['producto']} se vendio por un total de: {total:.2f}")
+ventas_totales(productos,ventas)
