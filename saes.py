@@ -72,6 +72,8 @@ def mostrar_alumnos():
         print(f"Error del sistema: {error}")
 
 
+
+
 def menu():
     while True:
 

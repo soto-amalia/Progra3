@@ -66,3 +66,32 @@ def tipo_triangulo(a, b, c):
         return "No es un triangulo valido"
 print(tipo_triangulo(40, lado2, 50))
 
+"""programa que permita  convertir temperaturas entre Celsius y Fahrenheit mediante un menú interactivo.
+Definir funciones para realizar las conversiones:
+
+Celsius a Fahrenheit: Usar la fórmula (°C × 9/5) + 32 = °F
+
+Fahrenheit a Celsius: Usar la fórmula (°F - 32) × 5/9 = °C
+despues definir una funcion menu
+despues definir una funcion menu
+Ejemplo de ejecución:
+
+Seleccione una opción:
+1. Celsius a Fahrenheit
+2. Fahrenheit a Celsius
+3. Salir
+Ingrese su opción: 1
+Ingrese la temperatura a convertir: 25
+25.0 °C son 77.00 °F
+despues definir una funcion menu
+Ejemplo de ejecución:
+
+Seleccione una opción:
+1. Celsius a Fahrenheit
+2. Fahrenheit a Celsius
+3. Salir
+Ingrese su opción: 1
+Ingrese la temperatura a convertir: 25
+25.0 °C son 77.00 °F
+"""
+

@@ -13,3 +13,4 @@ for valores in personas2.values():#Para imprimir los valore sutilizas .values()
 #Para usar ambos al mismo tiempo se recomiend ausar .items()
 for clave,valores in personas2.items():
     print(f"La clave es: {clave},y el valor es: {valores}")
+    
